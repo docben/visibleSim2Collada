@@ -19,9 +19,9 @@ void Catoms3D::loadModules(TiXmlNode *nodeBlock) {
         string str(attr);
         int pos1 = str.find_first_of(','),
         pos2 = str.find_last_of(',');
-        defaultColor.rgba[0] = atof(str.substr(0,pos1).c_str())/255.0;
-        defaultColor.rgba[1] = atof(str.substr(pos1+1,pos2-pos1-1).c_str())/255.0;
-        defaultColor.rgba[2] = atof(str.substr(pos2+1,str.length()-pos1-1).c_str())/255.0;
+        defaultColor.rgba[0] = (float)(atof(str.substr(0,pos1).c_str())/255.0);
+        defaultColor.rgba[1] = (float)(atof(str.substr(pos1+1,pos2-pos1-1).c_str())/255.0);
+        defaultColor.rgba[2] = (float)(atof(str.substr(pos2+1,str.length()-pos1-1).c_str())/255.0);
         std::cerr << "new default color :" << defaultColor << std::endl;
     }
     attr= element->Attribute("blocksize");
@@ -52,9 +52,9 @@ void Catoms3D::loadModules(TiXmlNode *nodeBlock) {
            string str(attr);
            int pos1 = str.find_first_of(','),
                pos2 = str.find_last_of(',');
-           color.set(atof(str.substr(0,pos1).c_str())/255.0,
-                     atof(str.substr(pos1+1,pos2-pos1-1).c_str())/255.0,
-                     atof(str.substr(pos2+1,str.length()-pos1-1).c_str())/255.0);
+           color.set((float)(atof(str.substr(0,pos1).c_str())/255.0),
+                     (float)(atof(str.substr(pos1+1,pos2-pos1-1).c_str())/255.0),
+                     (float)(atof(str.substr(pos2+1,str.length()-pos1-1).c_str())/255.0));
            std::cerr << "new color :" << color << std::endl;
         }
         // set the position
@@ -63,9 +63,9 @@ void Catoms3D::loadModules(TiXmlNode *nodeBlock) {
             string str(attr);
             int pos1 = str.find_first_of(','),
                 pos2 = str.find_last_of(',');
-            position.set(atof(str.substr(0,pos1).c_str()),
-                         atof(str.substr(pos1+1,pos2-pos1-1).c_str()),
-                         atof(str.substr(pos2+1,str.length()-pos1-1).c_str()));
+            position.set(atoi(str.substr(0,pos1).c_str()),
+                         atoi(str.substr(pos1+1,pos2-pos1-1).c_str()),
+                         atoi(str.substr(pos2+1,str.length()-pos1-1).c_str()));
             std::cerr << "position : " << position << std::endl;
         }
         // set the orientation
@@ -93,7 +93,7 @@ void Catoms3D::createDae(const std::string& title,const std::string &model) {
         }
         fin.close();
     } else {
-        cerr << "File not found: " << title << endl;
+		cerr << "File not found: " << title.c_str() << endl;
     }
 // controllers
     fout << "<library_controllers/>\n";

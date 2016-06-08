@@ -1,6 +1,19 @@
 #ifndef MODULES_HPP_INCLUDED
 #define MODULES_HPP_INCLUDED
 
+#if defined(_WIN32)
+#include <stdint.h> 
+typedef uint8_t u_int8_t;
+typedef uint16_t u_int16_t;
+typedef uint32_t u_int32_t;
+
+#include <math.h>
+#ifndef M_SQRT1_2
+#define M_SQRT1_2	0.70710678118654752440084436210485
+#endif
+
+#endif
+
 #include "vecteur.hpp"
 #include "camera.hpp"
 #include "color.hpp"

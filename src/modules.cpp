@@ -32,12 +32,12 @@ Modules *loadXml(const string &title, CatomType ct) {
 	bool isLoaded = xmlDoc->LoadFile();
 
 	if ( !isLoaded) {
-		std::cerr << "Could not load configuration file :" << title << std::endl;
+		std::cerr << "Could not load configuration file :" << title.c_str() << std::endl;
 		exit(EXIT_FAILURE);
 	} else {
 		TiXmlNode *xmlWorldNode = xmlDoc->FirstChild("world");
 		if (xmlWorldNode) {
-			std::cerr << "\033[1;34m  " << title << " successfully loaded "<< "\033[0m" << std::endl;
+			std::cerr << "\033[1;34m  " << title.c_str() << " successfully loaded "<< "\033[0m" << std::endl;
 		} else {
 			std::cerr << "\033[1;31m" << "Could not find root 'world' element in configuration file" << "\033[0m" << std::endl;
 			exit(1);
@@ -104,7 +104,7 @@ Modules *loadXml(const string &title, CatomType ct) {
 		}
 		attr=cameraElement->Attribute("angle");
 		if (attr) {
-			angle = atof(attr);
+			angle = (float)atof(attr);
 			modules->camera->setAngle(angle);
 		}
 		attr=cameraElement->Attribute("directionSpherical");
@@ -113,12 +113,12 @@ Modules *loadXml(const string &title, CatomType ct) {
 			int pos1 = str.find_first_of(','),
 			pos2 = str.find_last_of(',');
 			float az,ele,dist;
-			az = -90.0+atof(str.substr(0,pos1).c_str());
-			ele = atof(str.substr(pos1+1,pos2-pos1-1).c_str());
-			dist = atof(str.substr(pos2+1,str.length()-pos1-1).c_str());
+			az = -90.0f+(float)atof(str.substr(0,pos1).c_str());
+			ele = (float)atof(str.substr(pos1+1,pos2-pos1-1).c_str());
+			dist = (float)atof(str.substr(pos2+1,str.length()-pos1-1).c_str());
 			modules->camera->setDirection(az,ele);
 			modules->camera->setDistance(dist);
-			az = dist*sin(angle*M_PI/180.0);
+			az = (float)(dist*sin(angle*M_PI/180.0));
 			def_near = dist-az;
 			def_far = dist+az;
 		}
@@ -154,17 +154,17 @@ Modules *loadXml(const string &title, CatomType ct) {
 			string str(attr);
 			int pos1 = str.find_first_of(','),
 			pos2 = str.find_last_of(',');
-			az = -90.0+atof(str.substr(0,pos1).c_str());
-			ele = atof(str.substr(pos1+1,pos2-pos1-1).c_str());
-			dist = atof(str.substr(pos2+1,str.length()-pos1-1).c_str());
+			az = -90.0f+(float)atof(str.substr(0,pos1).c_str());
+			ele = (float)atof(str.substr(pos1+1,pos2-pos1-1).c_str());
+			dist = (float)atof(str.substr(pos2+1,str.length()-pos1-1).c_str());
 		}
 		attr=lightElement->Attribute("angle");
 		if (attr) {
-			angle = atof(attr);
+			angle = (float)atof(attr);
 		}
 		attr=lightElement->Attribute("near");
 		if (attr) {
-			def_near = atof(attr);
+			def_near = (float)atof(attr);
 		}
 		attr=lightElement->Attribute("far");
 		if (attr) {

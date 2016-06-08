@@ -29,14 +29,14 @@ const Color BLUE(0.0f,0.0f,1.0f);
 const Color YELLOW(1.0f,1.0f,0.0f);
 const Color CYAN(0.0f,1.0f,1.0f);
 const Color MAGENTA(1.0f,0.0f,1.0f);
-const Color LIGHTBLUE(173/255.0,216/255.0,230/255.0);
-const Color GOLD(1.0,215/255.0,0);
-const Color PINK(1.0,192/255.0,203/255.0);
-const Color GREY(0.5,0.5,0.5);
-const Color LIGHTGREY(0.75,0.75,0.75);
-const Color DARKGREY(0.25,0.25,0.25);
-const Color ORANGE(1.0,0.64706,0.0);
-const Color DARKORANGE(1.0,0.549,0.0);
+const Color LIGHTBLUE(173.0f/255.0f,216.0f/255.0f,230.0f/255.0f);
+const Color GOLD(1.0f,215.0f/255.0f,0.0f);
+const Color PINK(1.0f,192.0f/255.0f,203.0f/255.0f);
+const Color GREY(0.5f,0.5f,0.5f);
+const Color LIGHTGREY(0.75f,0.75f,0.75f);
+const Color DARKGREY(0.25f,0.25f,0.25f);
+const Color ORANGE(1.0f,0.64706f,0.0f);
+const Color DARKORANGE(1.0f,0.549f,0.0f);
 
 
 #endif // COLOR_H_
