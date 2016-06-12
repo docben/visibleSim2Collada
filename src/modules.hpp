@@ -2,7 +2,7 @@
 #define MODULES_HPP_INCLUDED
 
 #if defined(_WIN32)
-#include <stdint.h> 
+#include <stdint.h>
 typedef uint8_t u_int8_t;
 typedef uint16_t u_int16_t;
 typedef uint32_t u_int32_t;
@@ -21,7 +21,7 @@ typedef uint32_t u_int32_t;
 #include "TinyXML/tinyxml.h"
 #include <vector>
 
-enum CatomType { BB=0, SM=1, C2D=2, C3D=3 };
+enum CatomType { BB=0, SB=1, C2D=2, C3D=3 };
 
 class Modules {
 public :
@@ -39,6 +39,28 @@ public :
     uint16_t getColorId(const Color& color);
     void writeHeaders(ofstream &fout);
 };
+
+class SmartBlock {
+public :
+    uint64_t id;
+    Cell3DPosition position;
+    uint16_t idColor;
+
+    SmartBlock(uint64_t c_id,const Cell3DPosition &c_position,uint16_t c_color):id(c_id),position(c_position),idColor(c_color) {};
+    Matrice getMatrix(const Vecteur &bs) const;
+};
+
+class SmartBlocks:public Modules {
+    std::vector<SmartBlock> tabSmartBlocks;
+    Vecteur blockSize;
+public:
+    SmartBlocks():Modules(SB) {};
+    ~SmartBlocks() {};
+
+    void loadModules(TiXmlNode *nodeBlock);
+    void createDae(const std::string &title,const std::string &model);
+};
+
 
 class BlinkyBlock {
 public :

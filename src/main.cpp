@@ -22,12 +22,15 @@ int main(int argc,char **argv) {
             titleModel=std::string("blinkyBlockgeometry.xml");
         } else
         if (str=="BB") catomType=BB; else
-        if (str=="SM") catomType=SM;
+        if (str=="SM") {
+            catomType=SB;
+            titleModel=std::string("smartBlockgeometry.xml");
+        }
         if (argc>5 && strcmp(argv[4],"-g")==0) {
             titleModel = std::string(argv[5]);
         }
     } else {
-        std::cerr << "usage convertXml2Collada src dest catomType -g geometry.xml" << std::endl;
+        std::cerr << "usage convertXml2Collada src dest catomType [-g geometry.xml]" << std::endl;
         return -1;
     }
 

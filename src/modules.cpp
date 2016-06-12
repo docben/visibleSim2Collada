@@ -52,6 +52,9 @@ Modules *loadXml(const string &title, CatomType ct) {
         case BB:
             modules = new BlinkyBlocks();
         break;
+        case SB:
+            modules = new SmartBlocks();
+        break;
     }
 
 	/* reading the xml file */
